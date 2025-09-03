@@ -83,3 +83,12 @@ Contents:
 - Prediction of the standard errors associated to the age predictions. The estimation of the error spread was carried out using a Monte Carlo simulation approach. For each star, we randomly generated 100 values for Gaia’s 
 G filter magnitude and 100 values for effective temperature, creating 100 fictitious realizations per star. These realizations account for the variability introduced by measurement errors.
 
+---
+
+## Data
+This folder provides the main datasets used in the analysis:
+- ISO_SPOTS_ph_id_complete.RData: this table contains all the information related to the isochrones used in this study. It includes the following columns: 1) **beta**, i.e. the beta spot value associated to each isochrone to identify the respective starspot evolutionary model; 2) **ML**, i.e. mixing length parameter; 3) **age_yr**, i.e. age identified by the isochrone; 4) **G**, i.e. the theoretical value of the G magnitude in the H-R diagram of the isochrone; 5) **log_Te**, i.e. the theoretical temperature in the H-R diagram of the isochrone in log10 scale; 6) **phs**, i.e. phase of the isochrone; 7) **isocrona**, i.e. ID of the isochrone.
+- jackson_members_filt_binarie_final7000.RData: this is the main dataset with the stars of interest for the analysis, it includes the following columns: 1) **ges_id_gaia**, i.e. the Gaia ID of the star; 2) **MG0_ML**, i.e. the absolute G magnitude obtained from the predicted temperatures; 3) **logTeff**, i.e. the predicted temperature of the star by the Neural Network approach in the log10 scale; 4) **CLUSTER**, i.e. the cluster of the star.
+- train_set_df_stars_GG2M_model.csv and test_set_df_stars_GG2M_model.csv: these datasets includes all the selected features to perform the temperature prediction by the Neural Network approach. They includes the following columns: 1) **ges_id_gaia**, i.e. the Gaia ID; 2) **TEFF**, i.e. the spectroscopic temperature value obtained from the GES catalogue; 3) **E_TEFF**, i.e. the error associated to the spectroscopic effective temperature of GES; 4) **MBP_corr_redd**, i.e. the 
+
+
