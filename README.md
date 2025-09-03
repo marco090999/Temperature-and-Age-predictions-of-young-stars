@@ -26,8 +26,6 @@ Main contributions:
    - [Python Code](#python-code)
    - [R Code](#r-code)
 3. [Data](#datasets)
-4. [License](#license)
-5. [References](#references)
 
 ---
 
