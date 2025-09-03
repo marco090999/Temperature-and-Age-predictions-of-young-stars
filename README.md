@@ -26,6 +26,7 @@ Main contributions:
    - [Python Code](#python-code)
    - [R Code](#r-code)
 3. [Data](#datasets)
+4. [Requirements](#requirements)
 
 ---
 
@@ -89,4 +90,13 @@ This folder provides the main datasets used in the analysis:
 - jackson_members_filt_binarie_final7000.RData: this is the main dataset with the stars of interest for the analysis, it includes the following columns: 1) **ges_id_gaia**, i.e. the Gaia ID of the star; 2) **MG0_ML**, i.e. the absolute G magnitude obtained from the predicted temperatures; 3) **logTeff**, i.e. the predicted temperature of the star by the Neural Network approach in the log10 scale; 4) **CLUSTER**, i.e. the cluster of the star.
 - train_set_df_stars_GG2M_model.csv and test_set_df_stars_GG2M_model.csv: these datasets includes all the selected features to perform the temperature prediction by the Neural Network approach. They includes the following columns: 1) **ges_id_gaia**, i.e. the Gaia ID; 2) **TEFF**, i.e. the spectroscopic temperature value obtained from the GES catalogue; 3) **E_TEFF**, i.e. the error associated to the spectroscopic effective temperature of GES; 4) **MBP_corr_redd**, i.e. the absolute magnitude in the Gaia *BP* filter, corrected for extinction; 5) **mk_corr_redd**, i.e. the apparent magnitude in the 2MASS *k* filter, corrected for extinction; 6) **g_rp_corr_redd**, i.e. the Gaia *G-Grp* color, corrected for extinction; 7) **bp_rp_corr_redd**, i.e. the Gaia *Gbp-Grp* color, corrected for extinction; 8) **j_h_corr_redd**, i.e. the 2MASS *J-H* color, corrected for extinction; 9) **h_k_corr_redd**, i.e. the 2MASS *H-K* color, corrected for extinction; 10) **Teff_mont**, i.e. the input photometric temperature.
 **N.B** There are other datasets which were created starting from the training and test set, but they are too big to be uploaded in Github. They can be sent by the authors via drive.
+
+---
+
+## Requirements
+This project requires both Python and R to run. All necessary packages are listed in the corresponding requirements files.
+
+
+
+
 
