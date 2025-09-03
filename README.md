@@ -44,7 +44,7 @@ The repository is organized as follows:
 ├── LICENSE                # License information
 ├── README.md              # Project overview and instructions
 ├── requirements_R.txt     # R dependencies
-└── requirements_py        # Python dependencies
+└── requirements_py.txt    # Python dependencies
 ```
 
 **Description of folders and files:**
