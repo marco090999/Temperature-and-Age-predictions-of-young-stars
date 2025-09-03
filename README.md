@@ -62,6 +62,20 @@ The repository is organized as follows:
 This section provides instructions on how to run the analysis scripts included in this repository. The examples are organized by programming language.
 
 ### Python Code
-The Python script can be found in the `Usage/` folder: **PYTHON CODE TEMPERATURE PREDICTIONS.py**
+The Python script can be found in the `Usage/` folder: **PYTHON CODE TEMPERATURE PREDICTIONS.py**. These codes are necessary to obtain temperature predictions and their associated standard errors.
+Contents:
+- Import of the training and test set ("train_set_df_stars_GG2M_model.csv", "test_set_df_stars_GG2M_model.csv")
+- Create the Neural Network model: 5 hidden layer with 128-64-32-16-8 neurons with relu activation functions and linear activation function for the output layer. Use of Adam optimizer and mae as loss function, 50 epochs and 8 as batch size. Use of k-fold cross validation with k = 10 to prevent from overfitting.
+- Predict the effective temperature on the test set.
+- Visualisation of the temperature predictions on the test set.
+- Bootstrap procedure: Once the temperature predictions are obtained, it is necessary to derive the standard error associated with these predictions. To achieve this, we implemented a bootstrap procedure based on the neural network architecture described above. While the model assessment was carried out using 10-fold cross-validation, for the bootstrap procedure we adopted an early stopping criterion instead of cross-validation in order to reduce computational cost. Importantly, the architecture and hyperparameters of the network (5 layers, 50 epochs, batch size = 8, Adam optimizer, MAE loss) were kept fixed. Preliminary tests showed that the results obtained with early stopping were highly consistent with those from cross-validation, thus justifying the use of this more efficient procedure during the bootstrap phase.
+- Visualisation of the predicted standard error values by bootstrap procedure.
 
+--- 
+
+### R Code
+The R script can be found in the `Usage/` folder: **codes_repository_predict_age.R**. These codes are necessary to predict the age of the stars and the associated standard errors. Furthermore, there are the codes to choose the best isochrone set for each cluster of the analysis, i.e. the starspot evolutionary model.
+Contents:
+- Import the two main dataset for the analysis: ISO_SPOTS_ph_id_complete.RData, which includes all the information related to the different isochrone sets, and jackson_members_filt_binarie_final7000.RData, which is the main dataset with the stars of interest for the analysis, which also includes the predicted temperature values.
+- 
 
