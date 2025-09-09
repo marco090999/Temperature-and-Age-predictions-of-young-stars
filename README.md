@@ -23,8 +23,9 @@ Main contributions:
 ## Table of Contents
 1. [Repository Structure](#repository-structure)
 2. [Usage](#usage)
-   - [Python Code](#python-code)
-   - [R Code](#r-code)
+   - [Python Code for temperature prediction](#python-code)
+   - [R Code for age prediction](#r-code)
+   - [Python Code for extinction maps](#python-code-ext)
 3. [Data](#datasets)
 4. [Requirements](#requirements)
 
@@ -34,8 +35,9 @@ Main contributions:
 The repository is organized as follows:
 ```text
 ├── Usage/ # Scripts demonstrating the analysis
-│   ├── PYTHON CODE TEMPERATURE PREDICTIONS.py # Python code for analysis
-│   └── codes_repository_predict_age.R        # R code for analysis
+│   ├── PYTHON CODE TEMPERATURE PREDICTIONS.py # Python code for predicting the stars' temperature
+│   ├── codes_repository_predict_age.R         # R code for predicting the stars' age
+|   └── extinction_3dmap.py                    # Python code for interpolating the extinction maps
 ├── Data/ # Datasets used in the analysis
 │   ├── ISO_SPOTS_ph_id_complete.RData
 │   ├── jackson_members_filt_binarie_final7000.RData
@@ -60,7 +62,7 @@ The repository is organized as follows:
 ## Usage
 This section provides instructions on how to run the analysis scripts included in this repository. The examples are organized by programming language.
 
-### Python Code
+### Python Code for temperature prediction
 The Python script can be found in the `Usage/` folder: **PYTHON CODE TEMPERATURE PREDICTIONS.py**. These codes are necessary to obtain temperature predictions and their associated standard errors.
 Contents:
 - Import of the training and test set ("train_set_df_stars_GG2M_model.csv", "test_set_df_stars_GG2M_model.csv")
@@ -72,7 +74,19 @@ Contents:
 
 --- 
 
-### R Code
+### R Code for age prediction
+The R script can be found in the `Usage/` folder: **codes_repository_predict_age.R**. These codes are necessary to predict the age of the stars and the associated standard errors. Furthermore, there are the codes to choose the best isochrone set for each cluster of the analysis, i.e. the starspot evolutionary model.
+Contents:
+- Import the two main dataset for the analysis: ISO_SPOTS_ph_id_complete.RData, which includes all the information related to the different isochrone sets, and jackson_members_filt_binarie_final7000.RData, which is the main dataset with the stars of interest for the analysis, which also includes the predicted temperature values.
+- Definition of different functions in R to perform the interpolation of the position of the stars in the H-R diagram with respect to the position of the isochrones of the different sets.
+- Prediction of the stars' age by applying the previous functions and summary of the results.
+- Selection of the beta spot parameter from starspot evolutionary models, i.e. the different isochrone sets.
+- Prediction of the standard errors associated to the age predictions. The estimation of the error spread was carried out using a Monte Carlo simulation approach. For each star, we randomly generated 100 values for Gaia’s 
+G filter magnitude and 100 values for effective temperature, creating 100 fictitious realizations per star. These realizations account for the variability introduced by measurement errors.
+
+---
+
+### Python Code for extinction maps
 The R script can be found in the `Usage/` folder: **codes_repository_predict_age.R**. These codes are necessary to predict the age of the stars and the associated standard errors. Furthermore, there are the codes to choose the best isochrone set for each cluster of the analysis, i.e. the starspot evolutionary model.
 Contents:
 - Import the two main dataset for the analysis: ISO_SPOTS_ph_id_complete.RData, which includes all the information related to the different isochrone sets, and jackson_members_filt_binarie_final7000.RData, which is the main dataset with the stars of interest for the analysis, which also includes the predicted temperature values.
