@@ -87,14 +87,40 @@ G filter magnitude and 100 values for effective temperature, creating 100 fictit
 ---
 
 ### Python Code for extinction maps
-The R script can be found in the `Usage/` folder: **codes_repository_predict_age.R**. These codes are necessary to predict the age of the stars and the associated standard errors. Furthermore, there are the codes to choose the best isochrone set for each cluster of the analysis, i.e. the starspot evolutionary model.
-Contents:
-- Import the two main dataset for the analysis: ISO_SPOTS_ph_id_complete.RData, which includes all the information related to the different isochrone sets, and jackson_members_filt_binarie_final7000.RData, which is the main dataset with the stars of interest for the analysis, which also includes the predicted temperature values.
-- Definition of different functions in R to perform the interpolation of the position of the stars in the H-R diagram with respect to the position of the isochrones of the different sets.
-- Prediction of the stars' age by applying the previous functions and summary of the results.
-- Selection of the beta spot parameter from starspot evolutionary models, i.e. the different isochrone sets.
-- Prediction of the standard errors associated to the age predictions. The estimation of the error spread was carried out using a Monte Carlo simulation approach. For each star, we randomly generated 100 values for Gaia’s 
-G filter magnitude and 100 values for effective temperature, creating 100 fictitious realizations per star. These realizations account for the variability introduced by measurement errors.
+The Python script is located in the root of the repository: **extinction_3dmap.py**.  
+This code computes the line-of-sight extinction for a list of stars by applying the **3D extinction maps of Vergely et al. (2022)**. It also estimates extinction in several photometric bands commonly used in stellar astrophysics.  
+
+#### Contents  
+
+- **Input data**  
+  The script requires a CSV file containing at least:  
+  - `l`: galactic longitude (degrees)  
+  - `b`: galactic latitude (degrees)  
+  - `dist_par`: stellar distance in parsecs (e.g., from Gaia parallaxes or distance estimates).  
+
+- **Extinction calculation**  
+  - Galactic coordinates are converted into Cartesian coordinates.  
+  - The line of sight is sampled in steps of 10 pc, from the Sun up to the star’s distance.  
+  - The dust density is integrated along the line of sight using the **Vergely+22 3D dust maps** (three different FITS cubes at increasing distance ranges).  
+  - The result of the integration is stored as `A0`, which corresponds to \(A_V\) in Vergely+22.  
+  - The reddening value `E(B-V)` is also computed.  
+
+- **Extinction in other bands**  
+  - Using the **Gaia EDR3 extinction law**, the code derives extinction values in multiple filters:  
+    - Gaia (G, BP, RP)  
+    - 2MASS (J, H, Ks)  
+    - Pan-STARRS1 (g, r, i, z, y, w)  
+  - Gaia magnitudes are corrected for absorption to recover intrinsic colors, which are then used to refine the extinction estimates.  
+
+- **Output**  
+  - A CSV file (`extinction_3dmap.csv`) containing the original input data plus:  
+    - Line-of-sight extinction `A0`  
+    - Color excess `E(B-V)`  
+    - Extinction values in Gaia, 2MASS, and Pan-STARRS1 bands  
+
+- **Diagnostics**  
+  - The script computes residuals between iterations (mean, RMS, median, MAD) to verify convergence.  
+  - Since differences are generally small, a single iteration is sufficient for most cases.  
 
 ---
 
