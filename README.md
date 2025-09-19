@@ -40,6 +40,7 @@ The repository is organized as follows:
 |   └── extinction_3dmap.py                    # Python code for interpolating the extinction maps
 ├── Data/ # Datasets used in the analysis
 │   ├── ISO_SPOTS_ph_id_complete.RData
+|   ├── dataframe_external_validation.csv
 │   ├── jackson_members_filt_binarie_final7000.RData
 │   ├── test_set_df_stars_GG2M_model.csv
 │   └── train_set_df_stars_GG2M_model.csv
@@ -138,10 +139,21 @@ This table contains all the information related to the isochrones used in this s
 - **phs**: phase of the isochrone.
 - **isocrona**: ID of the isochrone.
 
+### dataframe_external_validation.csv
+This table contains all the information related to the stars used as validation set to assess the prediction ability of the Neural Network model. It includes the following columns:
+- **GaiaEDR3**: Gaia ID of the star.
+- **Teff**: spectroscopic temperature value obtained from the GES catalogue.
+- **l**: galactic longitude.
+- **b**: galactic latitude.
+- **r_med_photogeo**: star's distance in parsec.
+- **AG**: extinction value in the G band derived using BP/RP spectra, from GSP-Phot Aeneas best library.
+- **Teff_NN**: effective temperature predicted by the Neural Network model.
+- **MG0_ML**: absolute magnitude in the G filter obtained from the temperature prediction of the Neural Network.
+
 ### jackson_members_filt_binarie_final7000.RData
 This is the main dataset with the stars of interest for the analysis. It includes the following columns:
 - **ges_id_gaia**: Gaia ID of the star.
-- **MG0_ML**: absolute G magnitude obtained from the predicted temperatures.
+- **MG0_ML**: absolute magnitude in the G filter obtained from the temperature prediction of the Neural Network.
 - **logTeff**: predicted temperature of the star by the Neural Network approach (log10 scale).
 - **CLUSTER**: cluster of the star.
 
