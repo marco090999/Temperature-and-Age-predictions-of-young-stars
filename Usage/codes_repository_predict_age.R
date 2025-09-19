@@ -209,8 +209,8 @@ beta_selected_jackson <- cbind(chisq.res.MG0.cluster, beta_clusters)
 dim(jackson_members_filt_binarie_final7000)
 head(jackson_members_filt_binarie_final7000)
 
-# Gaia information of all the stars of the catalogue. Import the dataset expanded_GG2M.csv 
-#expanded_GG2M <- read_csv("C:/Users/Marco Tarantino/OneDrive - UNIPA/Desktop/INAF WORK/new work - expanded catalogue/new work - expanded catalogue/dataset per analisi/expanded_GG2M.csv", 
+# Gaia information of all the stars of the catalogue. Import the dataset expanded_GG2M.csv. N.B. huge file, it can be sent by drive under specific request.
+#expanded_GG2M <- read_csv("expanded_GG2M.csv", 
 #                          col_types = cols(ges_id_gaia = col_character(), 
 #                                           source_id = col_character()))
 
@@ -346,7 +346,8 @@ length(vec_TEFF_sim_new)
 
 head(df_std.dev_TEFF)
 
-df_stars_GG2M_complete <- read_csv("C:/Users/Marco Tarantino/OneDrive - UNIPA/Desktop/INAF WORK/new work - expanded catalogue/new work - expanded catalogue/dataset per analisi/df_stars_GG2M_complete.csv", 
+Gaia information of all the stars of the catalogue with all the new information. Import the dataset df_stars_GG2M_complete.csv. N.B. huge file, it can be sent by drive under specific request.
+df_stars_GG2M_complete <- read_csv(df_stars_GG2M_complete.csv", 
                                    col_types = cols(ges_id_gaia = col_character()))
 
 df_stars_GG2M_complete <- as.data.frame(df_stars_GG2M_complete)
@@ -380,7 +381,7 @@ write.csv(df_TEFF_sim_new_pt2, "df_TEFF_sim_new_pt2.csv", row.names = FALSE)
 # Now we need to combine the three components to get 100 MG0_ML values for each star.
 
 
-#merge_jackson <- read_csv("C:/Users/Marco Tarantino/OneDrive - UNIPA/Desktop/INAF WORK/new work - expanded catalogue/new work - expanded catalogue/materiale per stima eta'/std_dev_age/merge_jackson.csv", 
+#merge_jackson <- read_csv("merge_jackson.csv", 
 #                          col_types = cols(ges_id_gaia = col_character()))
 
 merge_jackson <- as.data.frame(merge_jackson)
@@ -494,6 +495,7 @@ save(df_jackson_perturbated_new_pt2, file = "df_jackson_perturbated_new_pt2.RDat
 
 # by this procedure we obtain df_jackson_perturbated_new and df_jackson_perturbated_new_pt2 with 100 perturbated values for each star of 
 # the 22 clusters of interest.
+
 
 
 
