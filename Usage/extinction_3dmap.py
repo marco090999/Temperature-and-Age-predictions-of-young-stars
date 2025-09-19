@@ -66,10 +66,11 @@ def extlaw(data):
 outputfile='extinction_3dmap.csv'
 
 
-# open the FITS file containing the Vergely et al. 2022 map
-dustmap1 = '/Users/prisinzano/GAIADR3/TABLES/explore_cube_density_values_010pc_v2.fits'
-dustmap2 = '/Users/prisinzano/GAIADR3/TABLES/explore_cube_density_values_025pc_v2.fits'
-dustmap3 = '/Users/prisinzano/GAIADR3/TABLES/explore_cube_density_values_050pc_v2.fits'
+# open the FITS file containing the Vergely et al. 2022 map from the following link: 
+# https://vizier.cds.unistra.fr/viz-bin/VizieR-3?-source=J/A+A/664/A174&-out.max=50&-out.form=HTML%20Table&-out.add=_r&-out.add=_RAJ,_DEJ&-sort=_r&-oc.form=sexa
+dustmap1 = 'GAIADR3/TABLES/explore_cube_density_values_010pc_v2.fits'
+dustmap2 = 'GAIADR3/TABLES/explore_cube_density_values_025pc_v2.fits'
+dustmap3 = 'GAIADR3/TABLES/explore_cube_density_values_050pc_v2.fits'
 
 hdul1 = fits.open(dustmap1)
 hdul2 = fits.open(dustmap2)
@@ -104,7 +105,7 @@ data = pd.read_csv(filedata, sep=',', na_values='')
 # check if your database includes stars closer than 20 pc or stars  with a negative parallax
 # I used the Gaia distance indicated as 'r_med_photogeo'  derived by Bailer Jones et al. 
 #data.loc[data['r_med_photogeo'] < 20, 'r_med_photogeo'] = 20
-#data.loc[data['parallax'] <= 0, 'parallax'] = 0.001 # serve per togliere i valori di parallax negative, assegnando un valore vicino a 0
+#data.loc[data['parallax'] <= 0, 'parallax'] = 0.001 
 #data['dist_par'] = data['r_med_photogeo'].fillna(1000. / data['parallax'])
 
 
