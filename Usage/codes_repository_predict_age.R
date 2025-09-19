@@ -380,7 +380,7 @@ write.csv(df_TEFF_sim_new_pt2, "df_TEFF_sim_new_pt2.csv", row.names = FALSE)
 # The values of G magnitude, distance, and temperature have been simulated.
 # Now we need to combine the three components to get 100 MG0_ML values for each star.
 
-
+All the information necessary to predict the standard deviation of the predicted age of the stars. Import the dataset merge_jackson.csv. N.B. huge file, it can be sent by drive under specific request.
 #merge_jackson <- read_csv("merge_jackson.csv", 
 #                          col_types = cols(ges_id_gaia = col_character()))
 
@@ -495,6 +495,7 @@ save(df_jackson_perturbated_new_pt2, file = "df_jackson_perturbated_new_pt2.RDat
 
 # by this procedure we obtain df_jackson_perturbated_new and df_jackson_perturbated_new_pt2 with 100 perturbated values for each star of 
 # the 22 clusters of interest.
+
 
 
 
