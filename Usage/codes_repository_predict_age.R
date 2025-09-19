@@ -15,7 +15,9 @@ library(fitdistrplus)
 
 # DATASET TO IMPORT:
 # - ISO_SPOTS_ph_id_complete (it contains all the data related to the isochrones)
+load(ISO_SPOTS_ph_id_complete.RData)
 # - jackson_members_filt_binarie_final7000 (it contains all the stars of interest for the age predictions)
+load(jackson_members_filt_binarie_final7000.RData)
 
 
 
@@ -633,6 +635,7 @@ save(df_jackson_perturbated_new_pt2, file = "df_jackson_perturbated_new_pt2.RDat
 
 # by this procedure we obtain df_jackson_perturbated_new and df_jackson_perturbated_new_pt2 with 100 perturbated values for each star of 
 # the 22 clusters of interest.
+
 
 
 
