@@ -199,6 +199,8 @@ beta_selected_jackson <- cbind(chisq.res.MG0.cluster, beta_clusters)
 
 
 
+
+
 #### CODE TO CREATE THE PERTURBATED DATASET OF THE JACKSON CATALOGUE TO PREDICT THE STD DEV ASSOCIATED TO THE AGE OF THE CLUSTERS ####
 
 # I need to simulate 100 values for each star in order to obtain a distribution of MG0_ML used in the H-R diagram for the interpolation of the age. 
@@ -495,6 +497,7 @@ save(df_jackson_perturbated_new_pt2, file = "df_jackson_perturbated_new_pt2.RDat
 
 # by this procedure we obtain df_jackson_perturbated_new and df_jackson_perturbated_new_pt2 with 100 perturbated values for each star of 
 # the 22 clusters of interest.
+
 
 
 
