@@ -26,6 +26,7 @@ Main contributions:
    - [Python Code for temperature prediction](#python-code)
    - [R Code for age prediction](#r-code)
    - [Python Code for extinction maps](#python-code-ext)
+   - [R Code with functions for age prediction](#r-code-functions)
 3. [Data](#datasets)
 4. [Requirements](#requirements)
 
@@ -37,7 +38,8 @@ The repository is organized as follows:
 ├── Usage/ # Scripts demonstrating the analysis
 │   ├── PYTHON CODE TEMPERATURE PREDICTIONS.py # Python code for predicting the stars' temperature
 │   ├── codes_repository_predict_age.R         # R code for predicting the stars' age
-|   └── extinction_3dmap.py                    # Python code for interpolating the extinction maps
+|   ├── extinction_3dmap.py                    # Python code for interpolating the extinction maps
+|   └── functions_repository_predict_age.R     # R code with the custom functions necessary in the codes_repository_predict_age.R file       
 ├── Data/ # Datasets used in the analysis
 │   ├── ISO_SPOTS_ph_id_complete.RData
 |   ├── dataframe_external_validation.csv
@@ -122,6 +124,38 @@ This code computes the line-of-sight extinction for a list of stars by applying 
 - **Diagnostics**  
   - The script computes residuals between iterations (mean, RMS, median, MAD) to verify convergence.  
   - Since differences are generally small, a single iteration is sufficient for most cases.  
+
+---
+
+### R Code with functions for age prediction
+This R script is located in the root of the repository: **functions_repository_predict_age.R**.  
+This code contains all the custom functions necessary in the codes_repository_predict_age.R file to predict stars' age.  
+
+#### Contents  
+
+- **dist_point_to_segment_2.0**
+
+Computes the minimum Euclidean distance between a star and a given isochrone segment, defined by two consecutive points. This is the core geometric operation used to measure how far a star lies from an isochrone track in the HR diagram.
+
+- **dist.isocrones.star_2.0**
+
+Calculates the distance between a single star and all segments of a chosen isochrone. The computation is parallelized to improve performance. It returns a vector of distances that quantify the star–isochrone proximity.
+
+- **dist.isocrones.star_3.0**
+
+Extends the previous function to a full set of stars. For each star, it filters the isochrone points corresponding to the relevant ages and computes distances to all local segments. Parallelization and dplyr are used for efficiency.
+
+- **position.point.to.curve_2.0**
+
+Determines the relative position of a star with respect to a reference curve (e.g., an isochrone) in the HR diagram. It interpolates the curve and returns whether the star lies on the left (SX) or right (DX) side.
+
+- **sign.isocrones.star_2.0**
+
+Applies position.point.to.curve_2.0 to check the star’s location relative to multiple isochrones. This helps in identifying whether the star falls inside or outside the age brackets defined by the isochrone set.
+
+- **weighted.mean.age**
+
+Computes the weighted mean stellar age by interpolating between two isochrones. The weights are inversely proportional to the distance of the star from each isochrone, giving more importance to closer tracks.
 
 ---
 
