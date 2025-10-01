@@ -200,6 +200,9 @@ beta_selected_jackson <- cbind(chisq.res.MG0.cluster, beta_clusters)
 
 
 
+##################
+### DO NOT RUN ### N.B. File with the perturbated ages is already uploaded in the repository (data_std_error_age_stars.RData). Do not run this script, it requires
+##################      additional dataet which are too big to be uploaded.
 
 #### CODE TO CREATE THE PERTURBATED DATASET OF THE JACKSON CATALOGUE TO PREDICT THE STD DEV ASSOCIATED TO THE AGE OF THE CLUSTERS ####
 
@@ -348,7 +351,7 @@ length(vec_TEFF_sim_new)
 
 head(df_std.dev_TEFF)
 
-Gaia information of all the stars of the catalogue with all the new information. Import the dataset df_stars_GG2M_complete.csv. N.B. huge file, it can be sent by drive under specific request.
+# Gaia information of all the stars of the catalogue with all the new information. Import the dataset df_stars_GG2M_complete.csv. N.B. huge file, it can be sent by drive under specific request.
 df_stars_GG2M_complete <- read_csv(df_stars_GG2M_complete.csv", 
                                    col_types = cols(ges_id_gaia = col_character()))
 
@@ -497,6 +500,7 @@ save(df_jackson_perturbated_new_pt2, file = "df_jackson_perturbated_new_pt2.RDat
 
 # by this procedure we obtain df_jackson_perturbated_new and df_jackson_perturbated_new_pt2 with 100 perturbated values for each star of 
 # the 22 clusters of interest.
+
 
 
 
