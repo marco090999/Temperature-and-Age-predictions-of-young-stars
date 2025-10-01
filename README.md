@@ -24,6 +24,7 @@ Main contributions:
 1. [Repository Structure](#repository-structure)
 2. [Usage](#usage)
    - [Python Code for temperature prediction](#python-code)
+   - [R Code with age prediction results](#r-code-res-age)
    - [R Code for age prediction](#r-code)
    - [Python Code for extinction maps](#python-code-ext)
    - [R Code with functions for age prediction](#r-code-functions)
@@ -37,11 +38,14 @@ The repository is organized as follows:
 ```text
 ├── Usage/ # Scripts demonstrating the analysis
 │   ├── PYTHON CODE TEMPERATURE PREDICTIONS.py # Python code for predicting the stars' temperature
+|   ├── code_age_final_results.R               # R code to analyse the final age prediction results
 │   ├── codes_repository_predict_age.R         # R code for predicting the stars' age
 |   ├── extinction_3dmap.py                    # Python code for interpolating the extinction maps
 |   └── functions_repository_predict_age.R     # R code with the custom functions necessary in the codes_repository_predict_age.R file       
 ├── Data/ # Datasets used in the analysis
 │   ├── ISO_SPOTS_ph_id_complete.RData
+|   ├── age_interp_12iso_group.RData
+|   ├── data_std_error_age_stars.RData
 |   ├── dataframe_external_validation.csv
 │   ├── jackson_members_filt_binarie_final7000.RData
 │   ├── test_set_df_stars_GG2M_model.csv
@@ -74,6 +78,16 @@ Contents:
 - Visualisation of the temperature predictions on the test set.
 - Bootstrap procedure: Once the temperature predictions are obtained, it is necessary to derive the standard error associated with these predictions. To achieve this, we implemented a bootstrap procedure based on the neural network architecture described above. While the model assessment was carried out using 10-fold cross-validation, for the bootstrap procedure we adopted an early stopping criterion instead of cross-validation in order to reduce computational cost. Importantly, the architecture and hyperparameters of the network (5 layers, 50 epochs, batch size = 8, Adam optimizer, MAE loss) were kept fixed. Preliminary tests showed that the results obtained with early stopping were highly consistent with those from cross-validation, thus justifying the use of this more efficient procedure during the bootstrap phase.
 - Visualisation of the predicted standard error values by bootstrap procedure.
+
+--- 
+
+### R Code with age prediction results
+The R script can be found in the `Usage/` folder: **code_age_final_results.R**. These codes are useful to explore the predicted age results.
+Contents:
+- Load of all the necessary datasets.
+- Example on NGC2244 young star cluster of age predictions. Specifically, in this phase we predict 100 perturbated ages for each star of the cluster.
+- Create the dataset with all the important values for each cluster related to age predictions.
+- Compare our age predictions with the values obtained by Jeffries et al. (2023) in "The Gaia-ESO Survey: empirical estimates of stellar ages from lithium equivalent widths (EAGLES)".
 
 --- 
 
@@ -172,6 +186,19 @@ This table contains all the information related to the isochrones used in this s
 - **log_Te**: theoretical temperature in the H-R diagram of the isochrone (log10 scale).
 - **phs**: phase of the isochrone.
 - **isocrona**: ID of the isochrone.
+
+### age_interp_12iso_group.RData
+This table contains all the information related to the predicted ages of the stars in the analysis. It includes the following columns:
+- **MG0_ML**: absolute magnitude in the G filter obtained from the temperature prediction of the Neural Network.
+- **logTeff**: predicted temperature of the star by the Neural Network approach (log10 scale).
+- **CLUSTER**: cluster of the star.
+
+In addition it contains all the age predictions obtained by the Starspot evolutionary models, with **beta** values equal to 0, 0.2, 0.4 and 0.6 and with **ML** values equal to 1, 1.5 and 2. It also contains the lower bound and the upper bound of these predictions.
+
+### data_std_error_age_stars.RData
+This .RData file contains three different tables related to the perturbated age values:
+- **df_jackson_perturbated_new** and **df_jackson_perturbated_new_pt2**: they contain all the 100 perturbated **logTeff** and **MG0_ML** values for each star of the analysis. 
+- **df_perturbated_final**: it contains all the 100 perturbated age values for each star of the analysis.
 
 ### dataframe_external_validation.csv
 This table contains all the information related to the stars used as validation set to assess the prediction ability of the Neural Network model. It includes the following columns:
